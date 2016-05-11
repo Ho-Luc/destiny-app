@@ -1,0 +1,30 @@
+{
+  "name": "destiny-app",
+  "version": "0.1.0",
+  "description": "A simple webapp that allows guardians to view character stats quickly.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ho-Luc/destiny-app.git"
+  },
+  "author": "Luc Ho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ho-Luc/destiny-app/issues"
+  },
+  "homepage": "https://github.com/Ho-Luc/destiny-app#readme",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "fs": "0.0.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "webpack-stream": "^3.2.0"
+  }
+}
