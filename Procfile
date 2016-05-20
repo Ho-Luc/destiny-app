@@ -1,1 +1,1 @@
-web: npm i && gulp default && node client-server.js
+web: npm i && npm run scripts && node client-server.js
