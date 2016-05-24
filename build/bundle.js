@@ -74,7 +74,7 @@
 	    vm.getInfo = function() {
 	      console.log('get request');
 	      // $http.get/'https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/' + vm.membershipId + '/' + , vm.config)
-	      $http.get('http://www.bungie.net/Platform/Destiny/2/Account/4611686018433293259/' , vm.config)
+	      $http.get('https://www.bungie.net/Platform/Destiny/2/Account/4611686018433293259/' , vm.config)
 	        .then((res) => {
 	          vm.message = res;
 	        }, err => console.log('GET err: ', err));
