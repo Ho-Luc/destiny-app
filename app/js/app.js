@@ -6,7 +6,7 @@ require('angular-route');
 angular.module('destinyApp', ['ngRoute'])
   .controller('AppController', ['$http', '$interval', function($http, $interval) {
     let vm = this;
-    vm.message = 'hello world';
+    vm.message = 'Please enter your PSN or Xbox username below.';
     vm.config = {
       headers: {
         'X-API-Key': process.env.API_KEY
@@ -17,6 +17,12 @@ angular.module('destinyApp', ['ngRoute'])
     vm.membershipId = null;
     vm.characterId = null;
 
+    vm.getMembershipId = function(name) {
+      $http.get('http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/1/' + vm.displayName + '/', vm.config)
+        .then((res) => {
+          vm.membershipId = res.Response[0].membershipId;
+        }, err => console.log('GET err:, err'));
+    };
 
     vm.getInfo = function() {
       console.log('get request');
