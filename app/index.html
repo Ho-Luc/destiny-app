@@ -4,13 +4,11 @@
     <meta charset="utf-8">
     <title>Destiny App</title>
   </head>
-  <body ng-controller="AppController as appctrl" >
+  <body ng-controller="AppController as appctrl">
     {{appctrl.message}}
     <label>
       <input type="text" ng-model="appctrl.displayName"></input>
-
-      {{appctrl.displayName}}
-      <button ng-click="appctrl.getMembershipId(appctrl.displayName)">Submit</button>
+      <button ng-click="appctrl.getInfo(appctrl.displayName)">Submit</button>
     </label>
     <script src="./bundle.js"></script>
   </body>
