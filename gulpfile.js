@@ -14,6 +14,7 @@ gulp.task('webpack:build', () => {
       output: {
         filename: 'bundle.js'
       },
+      watch: true,
       module: {
         loaders: [{
           test: /\.css$/,

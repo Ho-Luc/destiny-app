@@ -6,10 +6,19 @@
   </head>
   <body ng-controller="AppController as appctrl">
     {{appctrl.message}}
-    <label>
-      <input type="text" ng-model="appctrl.displayName"></input>
-      <button ng-click="appctrl.getInfo(appctrl.displayName)">Submit</button>
-    </label>
+    
+    <form>
+      <label>
+        <input type="text" ng-model="appctrl.playerName">
+      </label><br>
+      <label>
+        Xbox 1 <input type="radio" ng-model="appctrl.consoleId" value="1">
+      </label><br>
+      <label>
+        PS4 <input type="radio" ng-model="appctrl.consoleId" value="2">
+      </label><br>
+        <button ng-click="appctrl.getInfo(appctrl.playerName)">Submit</button>
+    </form>
     <script src="./bundle.js"></script>
   </body>
 </html>
