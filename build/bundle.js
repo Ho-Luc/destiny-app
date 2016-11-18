@@ -53,7 +53,7 @@
 
 	'use strict'
 	const angular = __webpack_require__(2);
-	__webpack_require__(7);
+	__webpack_require__(4);
 
 	angular.module('destinyApp', []).controller('AppController', ['$http', function($http) {
 	  let vm = this;
@@ -73,6 +73,7 @@
 	  vm.getInfo = function() {
 	    $http.get('/public/' + vm.consoleId + '/' + vm.playerName)
 	      .then((res) => {
+	        console.log(typeof res)
 	        vm.message = res;
 	      }, err => console.log('GET err: ', err));
 	  };
@@ -30961,18 +30962,15 @@
 	!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(8);
+	__webpack_require__(5);
 	module.exports = 'ngRoute';
 
 
 /***/ },
-/* 8 */
+/* 5 */
 /***/ function(module, exports) {
 
 	/**

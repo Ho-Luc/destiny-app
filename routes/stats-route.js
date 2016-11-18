@@ -21,7 +21,17 @@ module.exports = (publicRouter) => {
         console.log('First error request: ' + err);
       } else {
         let testJson = JSON.parse(body);
-        membershipId = testJson.Response[0].membershipId; //sets id
+        membershipId = testJson.Response[0].membershipId || null; //sets id
+
+        request({ //gets bungie.net user info
+          url: 'https://www.bungie.net/Platform/User/GetBungieAccount/'+ membershipId + '/' + req.params.consoleId,
+          headers: {
+            'X-API-Key': process.env.API_KEY
+          }
+        }, function(err, response, body) {
+          //put stuff in here
+        })
+
 
         request({ //gets stats
           url: 'https://www.bungie.net/Platform/Destiny/Stats/Account/' + req.params.consoleId + '/' + membershipId,
@@ -34,10 +44,10 @@ module.exports = (publicRouter) => {
           } else {
             var bundle = characters.individualStats(JSON.parse(body2))
             //console.log('this is the bundle', bundle);
-            res.status(200).json(bundle); //module that parses json to get relevent info
-            res.end();
           }
         })
+        res.status(200).json(bundle); //module that parses json to get relevent info
+        res.end();
 
       };
     })
