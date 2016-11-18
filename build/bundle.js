@@ -71,7 +71,7 @@
 	  };*/
 
 	  vm.getInfo = function() {
-	    $http.get('/public/' + vm.consoleId + '/' + vm.playerName)
+	    $http.get('/public/c/' + vm.consoleId + '/' + vm.playerName)
 	      .then((res) => {
 	        console.log(typeof res)
 	        vm.message = res;
