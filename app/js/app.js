@@ -1,5 +1,6 @@
 'use strict'
 const angular = require('angular');
+let characterService = require('characterService.js');
 require('angular-route');
 
 angular.module('destinyApp', []).controller('AppController', ['$http', function($http) {
@@ -20,7 +21,6 @@ angular.module('destinyApp', []).controller('AppController', ['$http', function(
   vm.getInfo = function() {
     $http.get('/public/c/' + vm.consoleId + '/' + vm.playerName)
       .then((res) => {
-        console.log(typeof res)
         vm.message = res;
       }, err => console.log('GET err: ', err));
   };
