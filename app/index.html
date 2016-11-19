@@ -6,7 +6,6 @@
   </head>
   <body ng-controller="AppController as appctrl">
     {{appctrl.message}}
-    
     <form>
       <label>
         <input type="text" ng-model="appctrl.playerName">
@@ -19,6 +18,20 @@
       </label><br>
         <button ng-click="appctrl.getInfo(appctrl.playerName)">Submit</button>
     </form>
+
+    <h2>{{appctrl.info.displayName}}</h2>
+    <h4>grimoire: {{appctrl.info.grimoireScore}}</h4>
+    <h4>Total Time Wasted on Destiny: {{appctrl.info.cumulativeTimeOnAllCharacters}}</h4>
+    <div ng-repeat="char in appctrl.info.characters">
+      <div style="background-image:url(https://www.bungie.net/" + {{char.backgroundPath}} + "); height: 200px; width: 400px; border: 1px solid black;"></div>
+      <div>K/D Ratio            : {{char.killsDeathsRatio}}</div>
+      <div>Best Weapon          : {{char.weaponBestType}}</div>
+      <div>W/L Ratio            : {{char.winLossRatio}}</div>
+      <div>Combat Rating        : {{char.combatRating}}</div>
+      <div>Crucible Time Played : {{char.timePlayedCrucible}}</div>
+      <div>Character Time Played: {{char.totalTimePlayed}}</div>
+      <br>
+    </div>
     <script src="./bundle.js"></script>
   </body>
 </html>
