@@ -23,7 +23,8 @@
     <h4>grimoire: {{appctrl.info.grimoireScore}}</h4>
     <h4>Total Time Wasted on Destiny: {{appctrl.info.cumulativeTimeOnAllCharacters}}</h4>
     <div ng-repeat="char in appctrl.info.characters">
-      <div style="background-image:url(https://www.bungie.net/" + {{char.backgroundPath}} + "); height: 200px; width: 400px; border: 1px solid black;"></div>
+      <div style="background-image: url(https://www.bungie.net{{char.backgroundPath}}); height: 100px; width: 400px; border: 1px solid black;"><img src="https://www.bungie.net{{char.emblemPath}}"></div>
+      <div>Character            : {{char.className}}</div>
       <div>K/D Ratio            : {{char.killsDeathsRatio}}</div>
       <div>Best Weapon          : {{char.weaponBestType}}</div>
       <div>W/L Ratio            : {{char.winLossRatio}}</div>
