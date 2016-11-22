@@ -22,7 +22,17 @@ module.exports = (publicRouter) => {
         console.log('Server member GET error request: ' + err);
       } else {
         let testJson = JSON.parse(body);
-        membershipId = testJson.Response[0].membershipId || null; //sets id
+
+        try {
+          membershipId = testJson.Response[0].membershipId;
+        }
+        catch(err){
+          res.status(404).json('Character not found.');
+          res.end();
+          return
+        }
+        //membershipId = testJson.Response[0].membershipId || null; //sets id
+
 
         request({ //gets stats
           url: 'https://www.bungie.net/Platform/Destiny/Stats/Account/' + req.params.consoleId + '/' + membershipId,

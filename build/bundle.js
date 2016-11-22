@@ -61,21 +61,20 @@
 	  vm.info;
 	  vm.consoleId = '2'; //default playstation, xbox is 1
 	  vm.playerName = '';
-	  vm.testName = 'bruh brobro';
+	  vm.hide = false;
 
-	  /*vm.getMembershipId = function(name) {
-	    $http.get('http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/1/' + vm.displayName + '/', vm.config)
-	      .then((res) => {
-	        vm.membershipId = res.Response[0].membershipId;
-	      }, err => console.log('GET err:, err'));
-	  };*/
 
 	  vm.getInfo = function() {
 	    $http.get('/public/c/' + vm.consoleId + '/' + vm.playerName)
 	      .then((res) => {
 	        vm.info = res.data;
+	        document.getElementById('myContainer').classList.remove('ng-hide');
 	        console.log('this is vm.info ', vm.info);
-	      }, err => console.log('GET err: ', err));
+	      }, (err) => {
+	        vm.message = "Status " + err.status + ", " + err.data + " Please enter your PSN or Xbox username below.";
+	        document.getElementById('myContainer').classList.add('ng-hide');
+	        console.log('GET err: ', err)
+	      });
 	  };
 	}]);
 
