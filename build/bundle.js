@@ -51,148 +51,44 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(__dirname, process) {'use strict'
-	const angular = __webpack_require__(3);
-	__webpack_require__(5).config({path: __dirname + '/../../.env'});
-	__webpack_require__(7);
+	'use strict'
+	const angular = __webpack_require__(2);
+	__webpack_require__(4);
 
-	angular.module('destinyApp', ['ngRoute'])
-	  .controller('AppController', ['$http', '$interval', function($http, $interval) {
-	    let vm = this;
-	    vm.message = 'hello world';
-	    vm.config = {
-	      headers: {
-	        'X-API-Key': process.env.API_KEY
-	      }
-	    };
-	    vm.membershipType = 2; //default playstation, xbox is 1
-	    vm.displayName = null;
-	    vm.membershipId = null;
-	    vm.characterId = null;
+	angular.module('destinyApp', []).controller('AppController', ['$http', function($http) {
+	  let vm = this;
+	  vm.message = 'Please enter your PSN or Xbox username below.';
+	  vm.info;
+	  vm.consoleId = '2'; //default playstation, xbox is 1
+	  vm.playerName = '';
+	  vm.hide = false;
 
 
-	    vm.getInfo = function() {
-	      console.log('get request');
-	      // $http.get/'https://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/' + vm.membershipId + '/' + , vm.config)
-	      $http.get('https://www.bungie.net/Platform/Destiny/2/Account/4611686018433293259/' , vm.config)
-	        .then((res) => {
-	          vm.message = res;
-	        }, err => console.log('GET err: ', err));
-	    };
-	  }]);
+	  vm.getInfo = function() {
+	    $http.get('/public/c/' + vm.consoleId + '/' + vm.playerName)
+	      .then((res) => {
+	        vm.info = res.data;
+	        document.getElementById('infoContainer').classList.remove('ng-hide');
+	        console.log('this is vm.info ', vm.info);
+	      }, (err) => {
+	        vm.message = "Status " + err.status + ", " + err.data + " Please enter your PSN or Xbox username below.";
+	        document.getElementById('infoContainer').classList.add('ng-hide');
+	        console.log('GET err: ', err)
+	      });
+	  };
+	}]);
 
-	/* WEBPACK VAR INJECTION */}.call(exports, "/", __webpack_require__(2)))
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
-
-	// shim for using process in browser
-
-	var process = module.exports = {};
-	var queue = [];
-	var draining = false;
-	var currentQueue;
-	var queueIndex = -1;
-
-	function cleanUpNextTick() {
-	    if (!draining || !currentQueue) {
-	        return;
-	    }
-	    draining = false;
-	    if (currentQueue.length) {
-	        queue = currentQueue.concat(queue);
-	    } else {
-	        queueIndex = -1;
-	    }
-	    if (queue.length) {
-	        drainQueue();
-	    }
-	}
-
-	function drainQueue() {
-	    if (draining) {
-	        return;
-	    }
-	    var timeout = setTimeout(cleanUpNextTick);
-	    draining = true;
-
-	    var len = queue.length;
-	    while(len) {
-	        currentQueue = queue;
-	        queue = [];
-	        while (++queueIndex < len) {
-	            if (currentQueue) {
-	                currentQueue[queueIndex].run();
-	            }
-	        }
-	        queueIndex = -1;
-	        len = queue.length;
-	    }
-	    currentQueue = null;
-	    draining = false;
-	    clearTimeout(timeout);
-	}
-
-	process.nextTick = function (fun) {
-	    var args = new Array(arguments.length - 1);
-	    if (arguments.length > 1) {
-	        for (var i = 1; i < arguments.length; i++) {
-	            args[i - 1] = arguments[i];
-	        }
-	    }
-	    queue.push(new Item(fun, args));
-	    if (queue.length === 1 && !draining) {
-	        setTimeout(drainQueue, 0);
-	    }
-	};
-
-	// v8 likes predictible objects
-	function Item(fun, array) {
-	    this.fun = fun;
-	    this.array = array;
-	}
-	Item.prototype.run = function () {
-	    this.fun.apply(null, this.array);
-	};
-	process.title = 'browser';
-	process.browser = true;
-	process.env = {};
-	process.argv = [];
-	process.version = ''; // empty string to avoid regexp issues
-	process.versions = {};
-
-	function noop() {}
-
-	process.on = noop;
-	process.addListener = noop;
-	process.once = noop;
-	process.off = noop;
-	process.removeListener = noop;
-	process.removeAllListeners = noop;
-	process.emit = noop;
-
-	process.binding = function (name) {
-	    throw new Error('process.binding is not supported');
-	};
-
-	process.cwd = function () { return '/' };
-	process.chdir = function (dir) {
-	    throw new Error('process.chdir is not supported');
-	};
-	process.umask = function() { return 0; };
-
-
-/***/ },
-/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(4);
+	__webpack_require__(3);
 	module.exports = angular;
 
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/**
@@ -31065,111 +30961,15 @@
 	!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict'
-
-	var fs = __webpack_require__(6)
-
-	module.exports = {
-	  /*
-	   * Main entry point into dotenv. Allows configuration before loading .env
-	   * @param {Object} options - valid options: path ('.env'), encoding ('utf8')
-	   * @returns {Boolean}
-	  */
-	  config: function (options) {
-	    var path = '.env'
-	    var encoding = 'utf8'
-	    var silent = false
-
-	    if (options) {
-	      if (options.silent) {
-	        silent = options.silent
-	      }
-	      if (options.path) {
-	        path = options.path
-	      }
-	      if (options.encoding) {
-	        encoding = options.encoding
-	      }
-	    }
-
-	    try {
-	      // specifying an encoding returns a string instead of a buffer
-	      var parsedObj = this.parse(fs.readFileSync(path, { encoding: encoding }))
-
-	      Object.keys(parsedObj).forEach(function (key) {
-	        process.env[key] = process.env[key] || parsedObj[key]
-	      })
-
-	      return parsedObj
-	    } catch (e) {
-	      if (!silent) {
-	        console.error(e)
-	      }
-	      return false
-	    }
-	  },
-
-	  /*
-	   * Parses a string or buffer into an object
-	   * @param {String|Buffer} src - source to be parsed
-	   * @returns {Object}
-	  */
-	  parse: function (src) {
-	    var obj = {}
-
-	    // convert Buffers before splitting into lines and processing
-	    src.toString().split('\n').forEach(function (line) {
-	      // matching "KEY' and 'VAL' in 'KEY=VAL'
-	      var keyValueArr = line.match(/^\s*([\w\.\-]+)\s*=\s*(.*)?\s*$/)
-	      // matched?
-	      if (keyValueArr != null) {
-	        var key = keyValueArr[1]
-
-	        // default undefined or missing values to empty string
-	        var value = keyValueArr[2] ? keyValueArr[2] : ''
-
-	        // expand newlines in quoted values
-	        var len = value ? value.length : 0
-	        if (len > 0 && value.charAt(0) === '\"' && value.charAt(len - 1) === '\"') {
-	          value = value.replace(/\\n/gm, '\n')
-	        }
-
-	        // remove any surrounding quotes and extra spaces
-	        value = value.replace(/(^['"]|['"]$)/g, '').trim()
-
-	        obj[key] = value
-	      }
-	    })
-
-	    return obj
-	  }
-
-	}
-
-	module.exports.load = module.exports.config
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
-	console.log("I'm `fs` modules");
-
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(8);
+	__webpack_require__(5);
 	module.exports = 'ngRoute';
 
 
 /***/ },
-/* 8 */
+/* 5 */
 /***/ function(module, exports) {
 
 	/**

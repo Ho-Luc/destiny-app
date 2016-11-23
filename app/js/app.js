@@ -1,37 +1,26 @@
 'use strict'
 const angular = require('angular');
-require('dotenv').config({path: __dirname + '/../../.env'});
 require('angular-route');
 
-function ApiService($http) {
-  this.$http = $http;
-  this.url = "/space/";
-};
-
-angular.module('destinyApp', []).service('apiService', ApiService).controller('AppController', ['$http', '$interval', function($http, $interval) {
+angular.module('destinyApp', []).controller('AppController', ['$http', function($http) {
   let vm = this;
   vm.message = 'Please enter your PSN or Xbox username below.';
-  vm.membershipType = 2; //default playstation, xbox is 1
-  vm.displayName = null;
-  vm.membershipId = null;
-  vm.characterId = null;
+  vm.info;
+  vm.consoleId = '2'; //default playstation, xbox is 1
+  vm.playerName = '';
+  vm.hide = false;
 
-  vm.getMembershipId = function(name) {
-    $http.get('http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/1/' + vm.displayName + '/', vm.config)
-      .then((res) => {
-        vm.membershipId = res.Response[0].membershipId;
-      }, err => console.log('GET err:, err'));
-  };
 
   vm.getInfo = function() {
-    $http.get('/public/')
+    $http.get('/public/c/' + vm.consoleId + '/' + vm.playerName)
       .then((res) => {
-        vm.message = res;
-      }, err => console.log('GET err: ', err));
+        vm.info = res.data;
+        document.getElementById('infoContainer').classList.remove('ng-hide');
+        console.log('this is vm.info ', vm.info);
+      }, (err) => {
+        vm.message = "Status " + err.status + ", " + err.data + " Please enter your PSN or Xbox username below.";
+        document.getElementById('infoContainer').classList.add('ng-hide');
+        console.log('GET err: ', err)
+      });
   };
 }]);
-
-ApiService.prototype.getMembershipId = function() {
-  //return promice for controller to use
-  return this.$http.get(this.url)
-};

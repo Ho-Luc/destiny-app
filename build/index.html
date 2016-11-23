@@ -3,10 +3,44 @@
   <head>
     <meta charset="utf-8">
     <title>Destiny App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/style.css">
   </head>
-  <body ng-controller="AppController as appctrl" ng-init="appctrl.getInfo()">
+  <body ng-controller="AppController as appctrl">
     {{appctrl.message}}
 
+    <form>
+      <label>
+        <input type="text" ng-model="appctrl.playerName">
+      </label><br>
+      <label>
+        Xbox 1 <input type="radio" ng-model="appctrl.consoleId" value="1">
+      </label><br>
+      <label>
+        PS4 <input type="radio" ng-model="appctrl.consoleId" value="2">
+      </label><br>
+        <button ng-click="appctrl.getInfo(appctrl.playerName)">Submit</button>
+    </form>
+
+    <section id="infoContainer" ng-show="{{appctrl.hide}}">
+      <h2>{{appctrl.info.displayName}}</h2>
+      <h4>Grimoire: {{appctrl.info.grimoireScore}}</h4>
+      <h4>Total Time Wasted on Destiny: {{appctrl.info.cumulativeTimeOnAllCharacters}}</h4>
+      <section class="char-container">
+        <div ng-repeat="char in appctrl.info.characters">
+          <div class="banner" style="background-image: url(https://www.bungie.net{{char.backgroundPath}})"><img src="https://www.bungie.net{{char.emblemPath}}"></div>
+          <div>Character            : {{char.className}}</div>
+          <div>K/D Ratio            : {{char.killsDeathsRatio}}</div>
+          <div>Best Weapon          : {{char.weaponBestType}}</div>
+          <div>W/L Ratio            : {{char.winLossRatio}}</div>
+          <div>Combat Rating        : {{char.combatRating}}</div>
+          <div>Crucible Time Played : {{char.timePlayedCrucible}}</div>
+          <div>Character Time Played: {{char.totalTimePlayed}}</div>
+          <br>
+        </div>
+      </section>
+  </section>
 
     <script src="./bundle.js"></script>
   </body>

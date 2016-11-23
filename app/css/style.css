@@ -1,0 +1,18 @@
+/*.char-container {
+  display: flex;
+  justify-content: space-around;
+}
+.banner img {
+height: 70px;
+width: 70px;
+padding-top: 5px;
+padding-left: 5px;
+}
+*/
+
+.banner {
+  outline-style: dotted;
+  outline-color: red;
+  height: 80px;
+  width: 240px;
+}

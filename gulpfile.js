@@ -4,7 +4,7 @@ const gulp = require('gulp');
 const webpack = require('webpack-stream');
 
 gulp.task('static', function() {
-  return gulp.src(['app/*.html', 'app/**/*.html', 'app/**/*.jpg', 'app/**/*.png'])
+  return gulp.src(['app/*.html', 'app/**/*.html', 'app/**/*.jpg', 'app/**/*.css', 'app/**/*.png'])
     .pipe(gulp.dest('build'));
 });
 
@@ -14,6 +14,7 @@ gulp.task('webpack:build', () => {
       output: {
         filename: 'bundle.js'
       },
+      watch: true,
       module: {
         loaders: [{
           test: /\.css$/,
