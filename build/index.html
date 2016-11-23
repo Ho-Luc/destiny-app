@@ -9,6 +9,7 @@
   </head>
   <body ng-controller="AppController as appctrl">
     {{appctrl.message}}
+
     <form>
       <label>
         <input type="text" ng-model="appctrl.playerName">
@@ -21,7 +22,8 @@
       </label><br>
         <button ng-click="appctrl.getInfo(appctrl.playerName)">Submit</button>
     </form>
-    <section id="myContainer" ng-show="{{appctrl.hide}}">
+
+    <section id="infoContainer" ng-show="{{appctrl.hide}}">
       <h2>{{appctrl.info.displayName}}</h2>
       <h4>Grimoire: {{appctrl.info.grimoireScore}}</h4>
       <h4>Total Time Wasted on Destiny: {{appctrl.info.cumulativeTimeOnAllCharacters}}</h4>

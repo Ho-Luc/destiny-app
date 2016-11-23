@@ -15,11 +15,11 @@ angular.module('destinyApp', []).controller('AppController', ['$http', function(
     $http.get('/public/c/' + vm.consoleId + '/' + vm.playerName)
       .then((res) => {
         vm.info = res.data;
-        document.getElementById('myContainer').classList.remove('ng-hide');
+        document.getElementById('infoContainer').classList.remove('ng-hide');
         console.log('this is vm.info ', vm.info);
       }, (err) => {
         vm.message = "Status " + err.status + ", " + err.data + " Please enter your PSN or Xbox username below.";
-        document.getElementById('myContainer').classList.add('ng-hide');
+        document.getElementById('infoContainer').classList.add('ng-hide');
         console.log('GET err: ', err)
       });
   };
