@@ -31,8 +31,6 @@ module.exports = (publicRouter) => {
           res.end();
           return
         }
-        //membershipId = testJson.Response[0].membershipId || null; //sets id
-
 
         request({ //gets stats
           url: 'https://www.bungie.net/Platform/Destiny/Stats/Account/' + req.params.consoleId + '/' + membershipId,
