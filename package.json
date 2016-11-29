@@ -23,7 +23,8 @@
     "dotenv": "^2.0.0",
     "express": "^4.13.4",
     "fs": "0.0.2",
-    "http-proxy": "^1.14.0"
+    "http-proxy": "^1.14.0",
+    "request": "^2.79.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
