@@ -1,1 +1,1 @@
-web: npm i && node gulp default && proxyServer.js
+web: npm i  && proxyServer.js
