@@ -1,1 +1,1 @@
-web: npm i  && proxyServer.js
+web: npm i && node proxyServer.js
