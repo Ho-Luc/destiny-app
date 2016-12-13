@@ -4,7 +4,8 @@
   "description": "A simple webapp that allows guardians to view character stats quickly.",
   "main": "index.js",
   "scripts": {
-    "build": "gulp default"
+    "build": "gulp default",
+    "start": "node proxyServer.js"
   },
   "repository": {
     "type": "git",
