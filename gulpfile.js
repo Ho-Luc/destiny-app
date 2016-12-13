@@ -5,7 +5,7 @@ const webpack = require('webpack-stream');
 
 gulp.task('static', function() {
   return gulp.src(['app/*.html', 'app/**/*.html', 'app/**/*.jpg', 'app/css/*.css'])
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest('./build/'));
 });
 
 gulp.task('webpack:build', () => {
