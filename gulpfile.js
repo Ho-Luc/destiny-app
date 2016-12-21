@@ -4,12 +4,12 @@ const gulp = require('gulp');
 const webpack = require('webpack-stream');
 
 gulp.task('static-html', function() {
-  return gulp.src(['app/*.html', 'app/**/*.html'])
+  return gulp.src(['app/index.html'])
     .pipe(gulp.dest('./build'));
 });
 
 gulp.task('static-css', function() {
-  return gulp.src(['app/**/*.jpg', 'app/css/*.css'])
+  return gulp.src(['app/css/*.css'])
     .pipe(gulp.dest('./build/css'));
 });
 

@@ -69,11 +69,12 @@
 	      .then((res) => {
 	        vm.info = res.data;
 	        document.getElementById('infoContainer').classList.remove('ng-hide');
-	        console.log('this is vm.info ', vm.info);
+	        vm.message = " Please enter your PSN or Xbox username below.";
+	        //console.log('this is vm.info ', vm.info);
 	      }, (err) => {
 	        vm.message = "Status " + err.status + ", " + err.data + " Please enter your PSN or Xbox username below.";
 	        document.getElementById('infoContainer').classList.add('ng-hide');
-	        console.log('GET err: ', err)
+	        //console.log('GET err: ', err)
 	      });
 	  };
 	}]);
