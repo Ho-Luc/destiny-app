@@ -32,7 +32,7 @@ module.exports = (publicRouter) => {
           return
         }
 
-        request({ //gets stats
+        request({ //gets stats @ characters module
           url: 'https://www.bungie.net/Platform/Destiny/Stats/Account/' + req.params.consoleId + '/' + membershipId,
           headers: {
             'X-API-Key': process.env.API_KEY
@@ -43,7 +43,7 @@ module.exports = (publicRouter) => {
           } else {
             var stats = characters.individualStats(JSON.parse(body));
 
-            request({ //gets bungie.net user info
+            request({ //gets bungie.net user info @ user module
               url: 'https://www.bungie.net/Platform/User/GetBungieAccount/'+ membershipId + '/' + req.params.consoleId,
               headers: {
                 'X-API-Key': process.env.API_KEY
@@ -52,7 +52,7 @@ module.exports = (publicRouter) => {
               if(err) {
                 console.log('Server user GET error request: ', err);
               } else {
-                var bundle = user.emblem(JSON.parse(body), stats);
+                var bundle = user.emblem(JSON.parse(body), stats, req.params.playerName);
 
                 res.status(200).json(bundle); //module that parses json to get relevent info
                 res.end();

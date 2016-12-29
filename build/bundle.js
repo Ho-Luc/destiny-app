@@ -68,12 +68,12 @@
 	    $http.get('/public/c/' + vm.consoleId + '/' + vm.playerName)
 	      .then((res) => {
 	        vm.info = res.data;
-	        document.getElementById('infoContainer').classList.remove('ng-hide');
+	        document.getElementById('info-container').classList.remove('ng-hide');
 	        vm.message = " Please enter your PSN or Xbox username below.";
 	        //console.log('this is vm.info ', vm.info);
 	      }, (err) => {
 	        vm.message = "Status " + err.status + ", " + err.data + " Please enter your PSN or Xbox username below.";
-	        document.getElementById('infoContainer').classList.add('ng-hide');
+	        document.getElementById('info-container').classList.add('ng-hide');
 	        //console.log('GET err: ', err)
 	      });
 	  };
