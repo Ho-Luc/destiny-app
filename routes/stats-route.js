@@ -51,8 +51,10 @@ module.exports = (publicRouter) => {
             }, function(err, response, body) {
               if(err) {
                 console.log('Server user GET error request: ', err);
+                res.end();
               } else {
-                var bundle = user.emblem(JSON.parse(body), stats, req.params.playerName);
+                // console.log('this is membership id', membershipId);
+                var bundle = user.emblem(JSON.parse(body), stats, req.params.playerName, req.params.consoleId);
 
                 res.status(200).json(bundle); //module that parses json to get relevent info
                 res.end();
