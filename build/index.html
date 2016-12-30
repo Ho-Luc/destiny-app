@@ -28,6 +28,10 @@
       </div>
 
       <div id="content">
+        <div id="chart-container" ng-show="false">
+          <button type="button" name="button" ng-click="appctrl.hideChart()">hide</button>
+          <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
         <section id="info-container" ng-show="{{appctrl.hide}}">
           <h2><strong>{{appctrl.info.displayName}}</strong></h2>
           <h4><strong>Grimoire:</strong> {{appctrl.info.grimoireScore}}</h4>
@@ -41,7 +45,9 @@
               <div><strong>W/L Ratio            :</strong> {{char.winLossRatio}}</div>
               <div><strong>Combat Rating        :</strong> {{char.combatRating}}</div>
               <div><strong>Crucible Time Played :</strong> {{char.timePlayedCrucible}}</div>
-              <div><strong>Character Time Played:</strong> {{char.totalTimePlayed}}</div>
+              <div><strong>Character Time Played:</strong> {{char.totalTimePlayed}}
+                <button id="graph-button" ng-click="appctrl.makeChart(char.timePlayedCrucibleInt, char.totalTimePlayedInt)">details</button>
+              </div>
               <br>
             </div>
           </section>
@@ -50,7 +56,7 @@
 
       <div id="footer">
         <footer>
-          <p>The idea for this project was born from the love of Bungie's game Destiny. I wanted to make something for the community and show off what I've learned, culminating as this project. Feel free to add me on PSN @ luckycharmsyo. Updated 2016. Check out the github repo <a href="https://github.com/Ho-Luc/destiny-app">here</a>.</P>
+          <p>The idea for this project was born from the love of Bungie's game Destiny. I wanted to make something for the community and show off what I've learned, culminating as this project. Updated 2016. Check out the github repo <a href="https://github.com/Ho-Luc/destiny-app">here</a>.</P>
         </footer>
       </div>
 
