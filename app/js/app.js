@@ -23,7 +23,7 @@ angular.module('destinyApp', []).controller('AppController', ['$http', function(
         vm.message = " Please enter your PSN or Xbox username below.";
         // console.log('this is vm.info ', vm.info);
       }, (err) => {
-        vm.message = "Status " + err.status + ", " + err.data + " Please enter your PSN or Xbox username below.";
+        vm.message = "Status " + err.status + ". Please re-enter your PSN or Xbox username below.";
         document.getElementById('info-container').classList.add('ng-hide');
         //console.log('GET err: ', err)
       });
@@ -34,12 +34,12 @@ angular.module('destinyApp', []).controller('AppController', ['$http', function(
     document.getElementById('chart-container').classList.remove('ng-hide');
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
-      type: 'doughnut',
+      type: 'pie',
       data: {
         labels: ["PVP (in hrs)", "PVE (in hrs)"],
         datasets: [{
           label: '# of Hours',
-          data: [(crucible/3600), ((total-crucible)/3600)],
+          data: [parseInt((crucible/3600).toFixed(2)), parseInt(((total-crucible)/3600).toFixed(2))],
           backgroundColor: [
             "#C0392B",
             "#34495E"

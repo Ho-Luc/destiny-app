@@ -28,15 +28,11 @@
       </div>
 
       <div id="content">
-        <div id="chart-container" ng-show="false">
-          <button type="button" name="button" ng-click="appctrl.hideChart()">hide</button>
-          <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
         <section id="info-container" ng-show="{{appctrl.hide}}">
           <h2><strong>{{appctrl.info.displayName}}</strong></h2>
           <h4><strong>Grimoire:</strong> {{appctrl.info.grimoireScore}}</h4>
           <h4><strong>Total Time Wasted on Destiny:</strong> {{appctrl.info.cumulativeTimeOnAllCharacters}}</h4>
-          <section class="char-container">
+          <section id="char-container">
             <div class="info-section" ng-repeat="char in appctrl.info.characters">
               <div class="banner" style="background-image: url(https://www.bungie.net{{char.backgroundPath}})"><img src="https://www.bungie.net{{char.emblemPath}}"></div>
               <div><strong>Character            :</strong> {{char.className}}</div>
@@ -47,6 +43,10 @@
               <div><strong>Crucible Time Played :</strong> {{char.timePlayedCrucible}}</div>
               <div><strong>Character Time Played:</strong> {{char.totalTimePlayed}}
                 <button id="graph-button" ng-click="appctrl.makeChart(char.timePlayedCrucibleInt, char.totalTimePlayedInt)">details</button>
+              </div>
+              <div id="chart-container" ng-show="false">
+                <button type="button" name="button" ng-click="appctrl.hideChart()">hide</button>
+                <canvas id="myChart" width="400" height="400"></canvas>
               </div>
               <br>
             </div>

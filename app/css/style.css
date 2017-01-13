@@ -1,4 +1,9 @@
-.banner {
+#banner {
   height: 96px;
   width: 460px;
+}
+
+#chart-container {
+  height: 400px;
+  width: 400px;
 }
