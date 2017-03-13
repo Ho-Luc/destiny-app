@@ -6,7 +6,7 @@ const webpack = require('webpack-stream');
 let paths = {
   css: ['app/css/*.css'],
   html: ['app/index.html'],
-  scripts: ['./entry.js', 'app/js/app.js']
+  scripts: ['./entry.js']
 }
 
 gulp.task('static-html', function() {
