@@ -35,18 +35,18 @@
           <section id="char-container">
             <div class="info-section" ng-repeat="char in appctrl.info.characters">
               <div class="banner" style="background-image: url(https://www.bungie.net{{char.backgroundPath}})"><img src="https://www.bungie.net{{char.emblemPath}}"></div>
-              <div><strong>Character            :</strong> {{char.className}}</div>
-              <div><strong>K/D Ratio            :</strong> {{char.killsDeathsRatio}}</div>
-              <div><strong>Best Weapon          :</strong> {{char.weaponBestType}}</div>
-              <div><strong>W/L Ratio            :</strong> {{char.winLossRatio}}</div>
-              <div><strong>Combat Rating        :</strong> {{char.combatRating}}</div>
-              <div><strong>Crucible Time Played :</strong> {{char.timePlayedCrucible}}</div>
-              <div><strong>Character Time Played:</strong> {{char.totalTimePlayed}}
+              <p><strong>Character            :</strong> {{char.className}}</p>
+              <p><strong>K/D Ratio            :</strong> {{char.killsDeathsRatio}}</p>
+              <p><strong>Best Weapon          :</strong> {{char.weaponBestType}}</p>
+              <p><strong>W/L Ratio            :</strong> {{char.winLossRatio}}</p>
+              <p><strong>Combat Rating        :</strong> {{char.combatRating}}</p>
+              <p><strong>Crucible Time Played :</strong> {{char.timePlayedCrucible}}</p>
+              <p><strong>Character Time Played:</strong> {{char.totalTimePlayed}}
                 <button id="graph-button" ng-click="appctrl.makeChart(char.timePlayedCrucibleInt, char.totalTimePlayedInt)">details</button>
-              </div>
-              <div id="chart-container" ng-show="false">
+              </p>
+              <div class="chart-container" ng-hide="true">
                 <button type="button" name="button" ng-click="appctrl.hideChart()">hide</button>
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <canvas class="myChart" width="400" height="400"></canvas>
               </div>
               <br>
             </div>

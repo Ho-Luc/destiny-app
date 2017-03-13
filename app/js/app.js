@@ -12,7 +12,8 @@ angular.module('destinyApp', []).controller('AppController', ['$http', function(
   vm.hide = false;
 
   vm.hideChart = function() {
-    document.getElementById('chart-container').classList.add('ng-hide');
+    console.log('hide chart method being clicked');
+    document.getElementsByClassName('chart-container').classList.add('ng-hide');
   };
 
   vm.getInfo = function() {
@@ -30,9 +31,8 @@ angular.module('destinyApp', []).controller('AppController', ['$http', function(
   };
 
   vm.makeChart = function(crucible, total){
-    console.log('this is crucible time : ', crucible + ' and total time : ' + total);
-    document.getElementById('chart-container').classList.remove('ng-hide');
-    var ctx = document.getElementById("myChart");
+    document.getElementsByClassName('chart-container').removeClass('ng-hide');
+    var ctx = document.getElementsByClassName("myChart");
     var myChart = new Chart(ctx, {
       type: 'pie',
       data: {
